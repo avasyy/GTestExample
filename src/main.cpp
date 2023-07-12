@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 
-#include "calculator.h"
+#include "Calculator.h"
 
 int main() {
     std::unique_ptr<ICalculator> calc = std::make_unique<Calculator>();

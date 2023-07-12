@@ -12,8 +12,8 @@ include_directories(${SOURCES_DIR})
 
 add_executable(unittests
         main.cpp
-        calculator_unittest.cpp
-        ${SOURCES_DIR}/calculator.cpp)
+        CalculatorUnitTest.cpp
+        ${SOURCES_DIR}/Calculator.cpp)
 
 target_link_libraries(unittests GTest::gtest GTest::gtest_main)
 add_test(AllTests unittests)

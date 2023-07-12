@@ -5,4 +5,4 @@ project(calculator)
 
 add_executable(calculator
         main.cpp
-        calculator.cpp)
+        Calculator.cpp)
