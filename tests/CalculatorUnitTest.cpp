@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+// The purpouse of this file is to remind how to write test cases without class
+
 TEST(CalculatorUnitTest, PositiveSum) {
     auto calc = Calculator();
     ASSERT_EQ(20, calc.add(10, 10));
