@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Remove build folder
-rm -r build/
+if [[ -d "build" ]]; then
+    rm -r build/
+fi
 
 # Create clear build folder and go inside
 mkdir build && cd build
