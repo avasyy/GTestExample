@@ -29,7 +29,7 @@ function is_build_dir_present() {
 }
 
 function build_binaries() {
-    if is_build_dir_present; then
+    if ! is_build_dir_present; then
         ./build.sh
     fi
 
