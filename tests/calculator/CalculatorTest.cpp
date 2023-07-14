@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-// The purpouse of this file is to remind how to write test cases with class
+// The purpose of this file is to remind how to write test cases with class
 
 class CalculatorTest : public ::testing::Test {
 protected:

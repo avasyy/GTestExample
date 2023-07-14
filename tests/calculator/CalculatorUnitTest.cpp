@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-// The purpouse of this file is to remind how to write test cases without class
+// The purpose of this file is to remind how to write test cases without class
 
 TEST(CalculatorUnitTest, PositiveSum) {
     auto calc = Calculator();
