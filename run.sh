@@ -3,8 +3,10 @@
 function help() {
     echo "Usage:"
     echo ""
-    echo "    binary - run calculator binary"
-    echo "    tests - run tests binary"
+    echo "    calculator - run calculator binary"
+    echo "    calculator_ut - run calculator unit tests"
+    echo "    lantern - run lantern binary"
+    echo "    lantern_ut - run lantern unit tests"
     echo "    clear - remove build directory"
     exit 1
 }
@@ -13,33 +15,60 @@ if [[ $1 == "" ]] || [[ $1 == "help" ]]; then
     help
 fi
 
-function build_binaries() {
-    if [[ ! -d "build" ]]; then
-        ./build.sh
-    fi
+calc_bin="build/src/calculator/calculator"
+lantern_bin="build/src/lantern/lantern"
+calc_test="build/tests/calculator/calculator_ut"
+lantern_test="build/tests/lantern/lantern_ut"
 
-    if [[ -f "build/src/calculator" ]] && [[ -f "build/tests/unittests" ]]; then
+function is_build_dir_present() {
+    if [[ -d "build" ]]; then
         return 0
     else
         return 1
     fi
 }
 
-if [[ $1 == "binary" ]]; then
-    if build_binaries; then
-        echo "Run binary:"
-        echo ""
-        ./build/src/calculator
+function build_binaries() {
+    if is_build_dir_present; then
+        ./build.sh
     fi
-elif [[ $1 == "tests" ]]; then
+
+    if [[ -f ${calc_bin} ]] && [[ -f ${lantern_bin} ]] && [[ -f ${calc_test} ]] && [[ -f ${lantern_test} ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+if [[ $1 == "calculator" ]]; then
     if build_binaries; then
-        echo "Run tests:"
+        echo "Run calculator binary:"
         echo ""
-        ./build/tests/unittests
+        ."/${calc_bin}"
+    fi
+elif [[ $1 == "calculator_ut" ]]; then
+    if build_binaries; then
+        echo "Run calculator tests:"
+        echo ""
+        ."/${calc_test}"
+    fi
+elif [[ $1 == "lantern" ]]; then
+    if build_binaries; then
+        echo "Run lantern binary:"
+        echo ""
+        ."/${lantern_bin}"
+    fi
+elif [[ $1 == "lantern_ut" ]]; then
+    if build_binaries; then
+        echo "Run lantern tests:"
+        echo ""
+        ."/${lantern_test}"
     fi
 elif [[ $1 == "clear" ]]; then
-    echo "Remove build directory"
-    rm -r build
+    if is_build_dir_present; then
+        echo "Remove build directory"
+        rm -r build
+    fi
 else
     echo "Passed wrong argument: $1"
 fi
